@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill Payment Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #card-element {
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #e53935;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #c62828;
+    }
+
+    #card-errors {
+      color: #fa755a;
+      margin-top: 10px;
+    }
+  </style>
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+  <h1>Fill Payment Details</h1>
+  
+  <label>
+    <input type="radio" id="card-checkbox" name="payment-method" value="credit-card">
+    Credit 
+  </label>
+  <label>
+    <input type="radio" id="card-checkbox" name="payment-method" value="credit-card">
+   debit card
+  </label>
+  <div id="card-element">
+    <!--Card Element will be Shown -->
+  </div>
+
+
+  <!-- Used to display form errors. -->
+  <div id="card-errors" role="alert"></div>
+
+  <button id="submit-button">
+    Pay
+  </button>
+  <script defer>
+    // publishable key. 
+    const stripe = Stripe('#');
+    
+    // Create an instance of Elements.
+    const elements = stripe.elements();
+    
+    // Custom styling When  input
+    const style = {
+      base: {
+        color: '#32325d',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#aab7c4'
+        }
+      },
+      invalid: {
+        color: '#fa755a',
+        iconColor: '#fa755a'
+      }
+    };
+
+    const card = elements.create('card', {style});
+    
+  
+    card.mount('#card-element');
+    
+    // validation errors from the card Element.
+    card.addEventListener('change', function(event) {
+      const displayError = document.getElementById('card-errors');
+      const cardDetails = document.getElementById('card-details');
+     
+      
+      if (event.error) {
+        displayError.textContent = event.error.message;
+        cardDetails.style.display = 'none';
+      } else {
+        displayError.textContent = '';
+        cardDetails.style.display = 'block';
+      }
+    });
+    
+    // form submission.
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+    
+      stripe.createToken(card).then(function(result) {
+        if (result.error) {
+          //  if there was an error.
+          const errorElement = document.getElementById('card-errors');
+          errorElement.textContent = result.error.message;
+        } else {
+          // Send the token to your server.
+          // the server-side processing.
+          console.log('Token:', result.token);
+          alert('Payment success! Token: ' + result.token.id);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

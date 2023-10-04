@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Viana</title>
+    <link
+      rel="shortcut icon"
+      href="./images/title-logo.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="stylesheet" href="./public/css/media.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <a href="#"> <img src="./images/logo-img.png" alt="logo" /> </a>
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li>
+            <a  href="index.html" >home</a>
+          </li>
+          <li>
+            <a href="shop.html" >Shop</a>
+          </li>
+          <li>
+            <a href="contact.html" class="active">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="order" class="order">
+        <h2>Contact <span>Now</span></h2>
+
+        <div class="order-content">
+          <form action="#" class="order-form" autocomplete="off" id="contactForm" onsubmit="return validateForm()" method="post">
+            <input type="text" placeholder="name" id="name" name="name" required />
+            <input type="email" placeholder="email" id="email" name="email" required />
+            <input type="tel" placeholder="phone Number" id="pnumber" name="pnumber" required />
+            <textarea cols="30" rows="8" id="Messege" placeholder="Messege" name="Messege"></textarea> 
+
+            <button type="submit" id="mycontact" name="submit" value="Submit">contact</button>
+          </form>
+          <img src="./images/form-img.jpg" alt="Net Error" />
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="contact-info">
+        <h4>contact info</h4>
+        <p>
+          <i class="fas fa-location-dot"></i><span>Main road, Batticaloa.</span>
+        </p>
+        <p><i class="fas fa-envelope"></i> <span>Shop@gmail.com</span></p>
+        <p><i class="fas fa-phone"></i> <span>+977 98989898</span></p>
+      </div>
+
+      <div class="location">
+        <h4>Help & Support</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms and Conditions</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+      </div>
+
+      <div class="quick-links">
+        <h4>Sell on Viana</h4>
+        <ul>
+          <li><a href="#">Supplier memberships</a></li>
+          <li><a href="#">Learning Center</a></li>
+          <li><a href="#">Partner Program</a></li>
+        </ul>
+      </div>
+
+      <div class="follow-us">
+        <h4>follow us</h4>
+        <ul>
+          <li>
+            <a href="#" target="blank">facebook</a>
+          </li>
+          <li>
+            <a href="#" target="blank">instagram</a>
+          </li>
+          <li><a href="#" target="blank">twitter</a></li>
+          <li>
+            <a href="#" target="blank">linkedin</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="copyright">
+        <p>Copyright @ 2023</p>
+      </div>
+    </footer>
+    <script src="public/js/main.js"></script>
+    
+  </body>
+  
+</html>
